@@ -14,16 +14,26 @@ class Student {
         this.grade = grade;
     }
 
-    public int getId() { return id; }
-    public String getName() { return name; }
-    public int getAge() { return age; }
-    public String getGrade() { return grade; }
+    public int getId() {
+        return id;
+    }
 
-    @Override
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
     public String toString() {
-        return "ID: " + id +
-               ", Name: " + name +
-               ", Age: " + age +
+        return "ID: " + id + 
+               ", Name: " + name + 
+               ", Age: " + age + 
                ", Grade: " + grade;
     }
 }
@@ -44,44 +54,62 @@ public class SchoolManagementSystem {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> addStudent();
-                case "2" -> viewStudents();
-                case "3" -> {
+                case "1":
+                    addStudent();
+                    break;
+                case "2":
+                    viewStudents();
+                    break;
+                case "3":
                     running = false;
                     System.out.println("Exiting... Goodbye!");
-                }
-                default -> System.out.println("Invalid choice. Try again.");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }
 
     private static void addStudent() {
-        try {
+        try 
+            {
             System.out.print("Enter Student ID: ");
             int id = Integer.parseInt(scanner.nextLine());
+            
             System.out.print("Enter Name: ");
             String name = scanner.nextLine();
+            
             System.out.print("Enter Age: ");
             int age = Integer.parseInt(scanner.nextLine());
+            
             System.out.print("Enter Grade: ");
             String grade = scanner.nextLine();
-
             Student student = new Student(id, name, age, grade);
             students.add(student);
             System.out.println("Student added successfully!");
-        } catch (Exception e) {
-            System.out.println("Error: Please enter valid input.");
+        }
+        catch (NumberFormatException e) 
+            {
+            System.out.println("Error: Please enter valid numbers for ID and Age.");
+        }
+        catch (Exception e) {
+            System.out.println("Error: Something went wrong.");
         }
     }
 
-    private static void viewStudents() {
-        if (students.isEmpty()) {
+    private static void viewStudents() 
+    {
+        if (students.isEmpty())
+        {
             System.out.println("No student records available.");
-        } else {
+        } 
+        else
+        {
             System.out.println("\n--- Student List ---");
-            for (Student s : students) {
+            for (Student s : students)
+                {
                 System.out.println(s);
             }
         }
- }
+    }
 }
